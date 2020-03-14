@@ -31,7 +31,7 @@
 #set(LIBS        common;blocks;cryptonote_basic;cryptonote_core;
 #		cryptonote_protocol;daemonizer;mnemonics;epee;lmdb;device;
 #                blockchain_db;ringct;wallet;cncrypto;easylogging;version;checkpoints;
-#                ringct_basic;randomx;hardforks)
+#                ringct_basic;randomx)
 
 
 if (NOT MONERO_DIR)
@@ -82,8 +82,7 @@ set(LIBS  cryptonote_core
           checkpoints
           version
           cncrypto
-          randomx
-          hardforks)
+          randomx)
 
 set(Xmr_INCLUDE_DIRS "${CPP_MONERO_DIR}")
 
