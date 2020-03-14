@@ -136,7 +136,7 @@ mkdir build && cd build
 
 cmake ..
 
-# alternatively can use cmake -DMONERO_DIR=/path/to/monero_folder ..
+# alternatively can use cmake -DBITTUBE_DIR=/path/to/monero_folder ..
 # if monero is not in ~/monero
 
 make

@@ -34,34 +34,34 @@
 #                ringct_basic;randomx)
 
 
-if (NOT MONERO_DIR)
-    set(MONERO_DIR ~/monero)
+if (NOT BITTUBE_DIR)
+    set(BITTUBE_DIR ~/monero)
 endif()
 
-message(STATUS MONERO_DIR ": ${MONERO_DIR}")
+message(STATUS BITTUBE_DIR ": ${BITTUBE_DIR}")
 
-set(MONERO_SOURCE_DIR ${MONERO_DIR}
+set(BITTUBE_SOURCE_DIR ${BITTUBE_DIR}
         CACHE PATH "Path to the root directory for Monero")
 
 # set location of monero build tree
-set(MONERO_BUILD_DIR ${MONERO_SOURCE_DIR}/build/release/
+set(BITTUBE_BUILD_DIR ${BITTUBE_SOURCE_DIR}/build/release/
         CACHE PATH "Path to the build directory for Monero")
 
 
-if (NOT EXISTS ${MONERO_BUILD_DIR})   
+if (NOT EXISTS ${BITTUBE_BUILD_DIR})   
     # try different location   
     message(STATUS "Trying different folder for monero libraries")
-    set(MONERO_BUILD_DIR ${MONERO_SOURCE_DIR}/build/Linux/master/release/
+    set(BITTUBE_BUILD_DIR ${BITTUBE_SOURCE_DIR}/build/Linux/master/release/
         CACHE PATH "Path to the build directory for Monero" FORCE)
 endif()
 
 
-if (NOT EXISTS ${MONERO_BUILD_DIR})   
-  message(FATAL_ERROR "Monero libraries not found in: ${MONERO_BUILD_DIR}")
+if (NOT EXISTS ${BITTUBE_BUILD_DIR})   
+  message(FATAL_ERROR "Monero libraries not found in: ${BITTUBE_BUILD_DIR}")
 endif()
 
 
-set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${MONERO_BUILD_DIR}"
+set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${BITTUBE_BUILD_DIR}"
         CACHE PATH "Add Monero directory for library searching")
 
 
@@ -84,7 +84,7 @@ set(LIBS  cryptonote_core
           cncrypto
           randomx)
 
-set(Xmr_INCLUDE_DIRS "${CPP_MONERO_DIR}")
+set(Xmr_INCLUDE_DIRS "${CPP_BITTUBE_DIR}")
 
 # if the project is a subset of main cpp-ethereum project
 # use same pattern for variables as Boost uses
@@ -123,18 +123,18 @@ endforeach()
 
 message("FOUND Monero_LIBRARIES: ${Monero_LIBRARIES}")
 
-message(STATUS ${MONERO_SOURCE_DIR}/build)
+message(STATUS ${BITTUBE_SOURCE_DIR}/build)
 
 #macro(target_include_monero_directories target_name)
 
     #target_include_directories(${target_name}
         #PRIVATE
-        #${MONERO_SOURCE_DIR}/src
-        #${MONERO_SOURCE_DIR}/external
-        #${MONERO_SOURCE_DIR}/build
-        #${MONERO_SOURCE_DIR}/external/easylogging++
-        #${MONERO_SOURCE_DIR}/contrib/epee/include
-        #${MONERO_SOURCE_DIR}/external/db_drivers/liblmdb)
+        #${BITTUBE_SOURCE_DIR}/src
+        #${BITTUBE_SOURCE_DIR}/external
+        #${BITTUBE_SOURCE_DIR}/build
+        #${BITTUBE_SOURCE_DIR}/external/easylogging++
+        #${BITTUBE_SOURCE_DIR}/contrib/epee/include
+        #${BITTUBE_SOURCE_DIR}/external/db_drivers/liblmdb)
 
 #endmacro(target_include_monero_directories)
 
@@ -143,16 +143,16 @@ add_library(Monero::Monero INTERFACE IMPORTED GLOBAL)
 
 # Requires to new cmake
 #target_include_directories(Monero::Monero INTERFACE        
-    #${MONERO_SOURCE_DIR}/src
-    #${MONERO_SOURCE_DIR}/external
-    #${MONERO_SOURCE_DIR}/build
-    #${MONERO_SOURCE_DIR}/external/easylogging++
-    #${MONERO_SOURCE_DIR}/contrib/epee/include
-    #${MONERO_SOURCE_DIR}/external/db_drivers/liblmdb)
+    #${BITTUBE_SOURCE_DIR}/src
+    #${BITTUBE_SOURCE_DIR}/external
+    #${BITTUBE_SOURCE_DIR}/build
+    #${BITTUBE_SOURCE_DIR}/external/easylogging++
+    #${BITTUBE_SOURCE_DIR}/contrib/epee/include
+    #${BITTUBE_SOURCE_DIR}/external/db_drivers/liblmdb)
 
 set_target_properties(Monero::Monero PROPERTIES
       INTERFACE_INCLUDE_DIRECTORIES 
-            "${MONERO_SOURCE_DIR}/src;${MONERO_SOURCE_DIR}/external;${MONERO_SOURCE_DIR}/build;${MONERO_SOURCE_DIR}/external/easylogging++;${MONERO_SOURCE_DIR}/contrib/epee/include;${MONERO_SOURCE_DIR}/external/db_drivers/liblmdb")
+            "${BITTUBE_SOURCE_DIR}/src;${BITTUBE_SOURCE_DIR}/external;${BITTUBE_SOURCE_DIR}/build;${BITTUBE_SOURCE_DIR}/external/easylogging++;${BITTUBE_SOURCE_DIR}/contrib/epee/include;${BITTUBE_SOURCE_DIR}/external/db_drivers/liblmdb")
 
 
 target_link_libraries(Monero::Monero INTERFACE
